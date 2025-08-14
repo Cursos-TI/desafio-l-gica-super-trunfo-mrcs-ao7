@@ -7,7 +7,7 @@ int main(){
     int populacaoC1 = 212, populacaoC2 = 46;
     float areaC1 = 8.515, areaC2 = 2.780;
     float pibC1 = 2.18, pibC2 = 0.63;
-    int pontosTC1 = 30, pontosTC2 = 30; //120;
+    int pontosTC1 = 30, pontosTC2 = 120;
     float densidadeC1, densidadeC2;
 
     // Cálculo da Densidade Demográfica //
