@@ -1,80 +1,212 @@
 #include <stdio.h>
 
-//Você pode usar as cartas que já foram cadastradas no desafio anterior, 
-//não é necessário implementar o cadastro novamente neste nível.
-//Foque na criação do menu com switch e na lógica de comparação com if-else 
-//(incluindo comparações aninhadas onde fizer sentido).
-
 int main(){
+    int start, menu1, menu2, opcao1, opcao2;
+    float resultado1, resultado2, resultadoAg, resultadoBr;
 
-    int start, menu;
-    int populacao1 = 7000000, populacao2 = 11000000;
-    float area1 = 1200, area2 = 1521;
-    float dpopulacional1, dpopulacional2;
-    float pib1 = 359.6, pib2 = 700;
-    int pontost1 = 50, pontost2 = 30;
+    int populacaoC1 = 212, populacaoC2 = 46;
+    float areaC1 = 8.515, areaC2 = 2.780;
+    float pibC1 = 2.18, pibC2 = 0.63;
+    int pontosTC1 = 30, pontosTC2 = 30; //120;
+    float densidadeC1, densidadeC2;
 
-    dpopulacional1 = (float) populacao1 / area1;
-    dpopulacional2 = (float) populacao2 / area2;
+    // Cálculo da Densidade Demográfica //
+    densidadeC1 = (float) populacaoC1 / areaC1;
+    densidadeC2 = (float) populacaoC2 / areaC2;
 
 
-
+    // Menu de Inicialização do JOGO //
     printf("### < SUPER TRUNFO > ###\n");
     printf("\n");
     printf("Aperte 1 para Começar> ");
     scanf("%d", &start);
     printf("\n");
 
+    // Decição do Jogador em começar ou fechar o JOGO //
+    // Menu de decisão do Jogador //
     switch (start)
     {
     case 1:
-        printf("|  MENU  | Digite o Número Determinado Para Comparar os Atributos>\n");
-        printf("1. População>\n");
-        printf("2. Área>\n");
-        printf("3. PIB>\n");
-        printf("4. Densidade Demográfica>\n");
-        printf("5. Número de Pontos Turísticos>\n");
-        printf("Outro Número. Fechar o jogo> ");
-        scanf("%d", &menu);
-        printf("\n");
+        printf("| MENU | Digite o Número da Opção Desejável> \n \n");
+        printf("1. Embate de Atributos>\n");
+        printf("2. Regras>\n");
+        printf("3. Sair do Jogo> ");
+        scanf("%d", &menu1);
 
-        if(menu <= 0 || menu > 5){
-            printf("Você fechou o Jogo.\n  Até a próxima!\n \n");
-        } else 
-            if(menu == 1){
-                printf("<Carta 1> Brasil (Rio de Janeiro): %d habitantes\n", populacao1);
-                printf("<Carta 2> Brasil (São Paulo): %d habitantes\n", populacao2);
-                 if(populacao1 > populacao2) printf("\n< A Carta 1 é a Vencedora!! >\n \n");
-                 else if (populacao1 < populacao2) printf("\n< A Carta 2 é a Vencedora!! >\n \n");
-                 else if (populacao1 == populacao2) printf("\n< Deu Empate!! >\n \n");       
-        } else
-            if(menu == 2){
-                printf("<Carta 1> Brasil (Rio de Janeiro): %.0f km²\n", area1);
-                printf("<Carta 2> Brasil (São Paulo): %.0f km²\n", area2);
-                 if(area1 > area2) printf("\n< A Carta 1 é a Vencedora!! >\n \n");
-                 else if (area1 < area2) printf("\n< A Carta 2 é a Vencedora!! >\n \n");
-                 else if (area1 == area2) printf("\n< Deu Empate!! >\n \n");
-        } else
-            if(menu == 3){
-                printf("<Carta 1> Brasil (Rio de Janeiro): R$ %.2f bilhões\n", pib1);
-                printf("<Carta 2> Brasil (São Paulo): R$ %.2f bilhões\n", pib2);
-                 if(pib1 > pib2) printf("\n< A Carta 1 é a Vencedora!! >\n \n");
-                 else if (pib1 < pib2) printf("\n< A Carta 2 é a Vencedora!! >\n \n");
-                 else if (pib1 == pib2) printf("\n< Deu Empate!! >\n \n");
-        } else
-            if(menu == 4){
-                printf("<Carta 1> Brasil (Rio de Janeiro): %.3f hab/km²\n", dpopulacional1);
-                printf("<Carta 2> Brasil (São Paulo): %.3f hab/km²\n", dpopulacional2);
-                 if(dpopulacional1 < dpopulacional2) printf("\n< A Carta 1 é a Vencedora!! >\n \n");
-                 else if (dpopulacional1 > dpopulacional2) printf("\n< A Carta 2 é a Vencedora!! >\n \n");
-                 else if (dpopulacional1 == dpopulacional2) printf("\n< Deu Empate!! >\n \n");
-        } else
-            if(menu == 5){
-                printf("<Carta 1> Brasil (Rio de Janeiro): %d\n", pontost1);
-                printf("<Carta 2> Brasil (São Paulo):  %d\n", pontost2);
-                 if(pontost1 > pontost2) printf("\n< A Carta 1 é a Vencedora!! >\n \n");
-                 else if (pontost1 < pontost2) printf("\n< A Carta 2 é a Vencedora!! >\n \n");
-                 else if (pontost1 == pontost2) printf("\n< Deu Empate!! >\n \n");
+        // Opções escolhidas //
+        switch (menu1)
+        {
+        case 1: // A Escolha dos Atributos //
+            printf("\n| Embate entre as Cartas!! |\n");
+            printf("Selecione dois Atributos para Obter o Resultado da Rodada>\n");
+            printf("\n1. População>\n");
+            printf("2. Área>\n");
+            printf("3. Densidade Demográfica>\n");
+            printf("4. PIB\n");
+            printf("5. Pontos Turísticos> \n \n> ");
+            scanf("%d", &opcao1);
+            printf("> ");
+            scanf("%d", &opcao2);
+
+            // Garantia de não ter repetições ou opções inválidas //
+            printf("\n");
+            if(opcao1 < 1 || opcao1 > 5 || opcao2 < 1 || opcao2 > 5) {
+                printf("Comparação com opções inexistentes são inválidas!\n \n");
+            } else
+
+            if(opcao1 == opcao2){printf("Comparações entre os mesmos Atributos são inválidas!\n \n");}
+            else{
+            // Comparação do Atributo 1 //
+            if(opcao1 == 1){ 
+                resultado1 = populacaoC1;
+                resultado2 = populacaoC2;
+                printf("Carta 1 (Brasil)> População: %d milhões de habitantes\n", populacaoC1);
+            }
+            else if(opcao1 == 2){ 
+                resultado1 = areaC1;
+                resultado2 = areaC2;
+                printf("Carta 1 (Brasil)> Área: %.3f milhões de km²\n", areaC1);
+            }
+            else if(opcao1 == 3){ 
+                resultado1 = densidadeC1;
+                resultado2 = densidadeC2;
+                printf("Carta 1 (Brasil)> Densidade Demográfica: %.2f hab/km²\n", densidadeC1);
+            }
+            else if(opcao1 == 4){ 
+                resultado1 = pibC1;
+                resultado2 = pibC2;
+                printf("Carta 1 (Brasil)> PIB: US$ %.2f trilhões\n", pibC1);
+            }
+            else if(opcao1 == 5){
+                resultado1 = pontosTC1;
+                resultado2 = pontosTC2;
+                printf("Carta 1 (Brasil)> Quantidade de Pontos Turísticos (Capital): %d\n", pontosTC1);
+            }
+
+            //==========================================================================================
+
+            if(opcao1 == 1){
+                printf("Carta 2 (Argentina)> População: %d milhões de habitantes\n", populacaoC2);
+            }
+            else if(opcao1 == 2){
+                printf("Carta 2 (Argentina)> Área: %.3f milhões de km²\n", areaC2);
+            }
+            else if(opcao1 == 3){ 
+                printf("Carta 2 (Argentina)> Densidade Demográfica: %.2f hab/km²\n", densidadeC2);
+            }
+            else if(opcao1 == 4){
+                printf("Carta 2 (Argentina)> PIB: US$ %.2f trilhões\n", pibC2);
+            }
+            else if(opcao1 == 5){ 
+                printf("Carta 2 (Argentina)> Quantidade de Pontos Turísticos (Capital): %d\n", pontosTC2);
+            }
+            if((resultado1 == resultado2)){ // Caso haja Empate //
+                printf("< EMPATE NO EMBATE!! >\n");
+            } else
+            
+            if(opcao1 == 3){ // Vencedor da Primeira Comparação (Densidade Demográfica) //
+                (resultado1 < resultado2) ? printf("< A Carta 1 Venceu o Primeiro Embate >\n") :
+                                            printf("< A Carta 2 Venceu o Primeiro Embate >\n");
+            } else{ // Vencedor da Primeira Comparação (Geral) //
+                (resultado1 > resultado2) ? printf("< A Carta 1 Venceu o Primeiro Embate >\n") :
+                                            printf("< A Carta 2 Venceu o Primeiro Embate >\n");
+            } printf("\n");
+            
+            //=======================================================================================
+
+            // Comparação do Atributo 2
+            if(opcao2 == 1){ 
+                resultado1 += populacaoC1;
+                resultado2 += populacaoC2;
+                resultadoBr = populacaoC1;
+                resultadoAg = populacaoC2;
+                printf("Carta 1 (Brasil)> População: %d milhões de habitantes\n", populacaoC1);
+            }
+            else if(opcao2 == 2){ 
+                resultado1 += areaC1;
+                resultado2 += areaC2;
+                resultadoBr = areaC1;
+                resultadoAg = areaC2;
+                printf("Carta 1 (Brasil)> Área: %.3f milhões de km²\n", areaC1);
+            }
+            else if(opcao2 == 3){ 
+                resultado1 += densidadeC1;
+                resultado2 += densidadeC2;
+                resultadoBr = densidadeC1;
+                resultadoAg = densidadeC2;
+                printf("Carta 1 (Brasil)> Densidade Demográfica: %.2f hab/km²\n", densidadeC1);
+            }
+            else if(opcao2 == 4){ 
+                resultado1 += pibC1;
+                resultado2 += pibC2;
+                resultadoBr = pibC1;
+                resultadoAg = pibC2;
+                printf("Carta 1 (Brasil)> PIB: US$ %.2f trilhões\n", pibC1);
+            }
+            else if(opcao2 == 5){ 
+                resultado1 += pontosTC1;
+                resultado2 += pontosTC2;
+                resultadoBr = pontosTC1;
+                resultadoAg = pontosTC2;
+                printf("Carta 1 (Brasil)> Quantidade de Pontos Turísticos (Capital): %d\n", pontosTC1);
+            }
+
+            //===========================================================================================
+
+            if(opcao2 == 1){
+                printf("Carta 2 (Argentina)> População: %d milhões de habitantes\n", populacaoC2);
+            }
+            else if(opcao2 == 2){
+                printf("Carta 2 (Argentina)> Área: %.3f milhões de km²\n", areaC2);
+            }
+            else if(opcao2 == 3){ 
+                printf("Carta 2 (Argentina)> Densidade Demográfica: %.2f hab/km²\n", densidadeC2);
+            }
+            else if(opcao2 == 4){ 
+                printf("Carta 2 (Argentina)> PIB: US$ %.2f trilhões\n", pibC2);
+            }
+            else if(opcao2 == 5){ 
+                printf("Carta 2 (Argentina)> Quantidade de Pontos Turísticos (Capital): %d\n", pontosTC2);
+            }
+
+            if((resultadoBr == resultadoAg)){ // Caso haja Empate //
+                printf("< EMPATE NO EMBATE!! >\n");
+            } else
+
+            if(opcao2 == 3){ // Vencedor da Primeira Comparação (Densidade Demográfica) //
+                (resultadoBr < resultadoAg) ? printf("< A Carta 1 Venceu o Segundo Embate >\n") :
+                                              printf("< A Carta 2 Venceu o Segundo Embate >\n");
+            } else{ // Vencedor da Primeira Comparação (Geral) //
+                (resultadoBr > resultadoAg) ? printf("< A Carta 1 Venceu o Segundo Embate >\n") :
+                                              printf("< A Carta 2 Venceu o Segundo Embate >\n");
+            } printf("\n");
+
+
+            // Soma dos Atributos //
+            printf("Soma dos Atributos Escolhidos: Carta 1: %.2f\n", resultado1);
+            printf("Soma dos Atributos Escolhidos: Carta 2: %.2f\n", resultado2);
+
+            // O Ganhador do Embate (Geral) //
+            if((resultado1 == resultado2)){
+                printf("< EMPATE NO EMBATE!! >\n");
+            } else
+            (resultado1 > resultado2) ? printf("< A CARTA 1 (Brasil) É A VENCEDORA!!!!! >\n") :
+                                        printf("< A CARTA 2 (Argentina) É A VENCEDORA!!!!! >\n");
+
+            printf("\n FIM DE JOGO.\nAté a próxima!\n \n");
+            }
+            break;
+
+        case 2: // Regras do JOGO //
+            printf("\n| REGRAS |\n");
+            printf("\n* O jogador irá escolher dois atributo para a comparação individual.\n");
+            printf("* Após a comparação, os valores do dois atributos serão somados.\n");
+            printf("* A carta com a maior soma vence a rodada.\n \n");
+            break;
+        
+        default:
+            printf("\nVocê fechou o Jogo.\n  Até a próxima!\n \n");
+            break;
         }
         break;
     
@@ -82,6 +214,5 @@ int main(){
         printf("Você fechou o Jogo.\n  Até a próxima!\n \n");
         break;
     }
-
     return 0;
 }
